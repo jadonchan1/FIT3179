@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
   "title": "Average Tourist Arrivals of Malaysia from 2015 to 2025",
   "width": 800,
-  "height": 500,
+  "height": 400,
   "projection": {"type": "mercator"},
   "data": {
     "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
@@ -19,6 +19,20 @@
         },
         "key": "Country",
         "fields": ["Arrivals"]
+      }
+    },
+    {"filter": "datum.Arrivals >= minArrivals"}
+  ],
+  "params": [
+    {
+      "name": "minArrivals",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 500000,
+        "step": 1000,
+        "name": "Minimum Tourist Arrivals: "
       }
     }
   ],

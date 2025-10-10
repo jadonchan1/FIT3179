@@ -1,6 +1,6 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Inbound Tourism Expenditure by Product",
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "title": "Inbound Tourism Expenditure by Category",
   "width": 700,
   "data": {
     "url": "https://raw.githubusercontent.com/jadonchan1/FIT3179/refs/heads/main/Tourist%20expenditure%20category.csv"
@@ -30,20 +30,41 @@
       }
     }
   ],
-  "mark": "bar",
-  "encoding": {
-    "x": {"field": "Year", "type": "nominal", "title": "Year"},
-    "y": {
-      "field": "Expenditure (RM Million)",
-      "type": "quantitative",
-      "title": "Expenditure (RM Million)"
+  "layer": [
+    {
+      "mark": "bar",
+      "encoding": {
+        "x": {"field": "Year", "type": "nominal", "title": "Year"},
+        "y": {"field": "Expenditure (RM Million)", "type": "quantitative", "title": "Expenditure (RM Million)"},
+        "color": {"field": "Category", "type": "nominal"},
+        "tooltip": [
+          {"field": "Category"},
+          {"field": "Expenditure (RM Million)", "format": ","},
+          {"field": "Year"}
+        ]
+      }
     },
-    "color": {"field": "Category", "type": "nominal"},
-    "tooltip": [
-      {"field": "Category"},
-      {"field": "Expenditure (RM Million)", "format": ","},
-      {"field": "Year"}
-    ]
-  },
-  "config": {}
+    {
+      "mark": {
+        "type": "text",
+        "dy": -8,
+        "fontWeight": "bold",
+        "color": "black"
+      },
+      "encoding": {
+        "x": {"field": "Year", "type": "ordinal"},
+        "y": {
+          "aggregate": "sum",
+          "field": "Expenditure (RM Million)",
+          "type": "quantitative"
+        },
+        "text": {
+          "aggregate": "sum",
+          "field": "Expenditure (RM Million)",
+          "type": "quantitative",
+          "format": ","
+        }
+      }
+    }
+  ]
 }
