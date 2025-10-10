@@ -1,0 +1,49 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Inbound Tourism Expenditure by Product",
+  "width": 700,
+  "data": {
+    "url": "https://raw.githubusercontent.com/jadonchan1/FIT3179/refs/heads/main/Tourist%20expenditure%20category.csv"
+  },
+  "transform": [
+    {
+      "filter": "selectedCategory == 'All' || datum.Category == selectedCategory"
+    }
+  ],
+  "params": [
+    {
+      "name": "selectedCategory",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": [
+          "All",
+          "Accommodation services",
+          "Food and beverage serving services",
+          "Passenger transport services",
+          "Travel agencies and other reservation services",
+          "Cultural, sports and recreational services",
+          "Retail sale of automotive fuel",
+          "Country-specific tourism characteristic goods",
+          "Country-specific tourism characteristic services"
+        ]
+      }
+    }
+  ],
+  "mark": "bar",
+  "encoding": {
+    "x": {"field": "Year", "type": "nominal", "title": "Year"},
+    "y": {
+      "field": "Expenditure (RM Million)",
+      "type": "quantitative",
+      "title": "Expenditure (RM Million)"
+    },
+    "color": {"field": "Category", "type": "nominal"},
+    "tooltip": [
+      {"field": "Category"},
+      {"field": "Expenditure (RM Million)", "format": ","},
+      {"field": "Year"}
+    ]
+  },
+  "config": {}
+}
