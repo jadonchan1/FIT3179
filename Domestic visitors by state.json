@@ -1,0 +1,114 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "params": [
+    {
+      "name": "yearSelect",
+      "value": 2024,
+      "bind": {
+        "input": "range",
+        "min": 2015,
+        "max": 2024,
+        "step": 1,
+        "name": "Select Year: "
+      }
+    }
+  ],
+  "hconcat": [
+    {
+      "width": 600,
+      "height": 350,
+      "title": "Domestic Visitors by State (Malaysia)",
+      "params": [
+        {
+          "name": "stateSelect",
+          "select": {"type": "point", "fields": ["properties.Name"]}
+        }
+      ],
+      "data": {
+        "url": "https://raw.githubusercontent.com/jnewbery/CartogramMalaysia/9ac25c828e0306dfa2c2869f98eb2b357da69764/public/data/malaysia-states.topojson",
+        "format": {"type": "topojson", "feature": "states"}
+      },
+      "transform": [
+        {
+          "lookup": "properties.Name",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/jadonchan1/FIT3179/refs/heads/main/domestic%20visitors%20by%20state%20visited4.csv"
+            },
+            "key": "State",
+            "fields": [
+              "Visitors_2015",
+              "Visitors_2016",
+              "Visitors_2017",
+              "Visitors_2018",
+              "Visitors_2019",
+              "Visitors_2020",
+              "Visitors_2021",
+              "Visitors_2022",
+              "Visitors_2023",
+              "Visitors_2024"
+            ]
+          }
+        },
+        {"calculate": "datum['Visitors_' + yearSelect]", "as": "Visitors"}
+      ],
+      "projection": {"type": "mercator"},
+      "mark": {"type": "geoshape", "stroke": "white"},
+      "encoding": {
+        "color": {
+          "condition": {
+            "param": "stateSelect",
+            "field": "Visitors",
+            "type": "quantitative",
+            "title": "Number of Visitors"
+          },
+          "value": "lightgray"
+        },
+        "tooltip": [
+          {"field": "properties.Name", "type": "nominal", "title": "State"},
+          {"field": "Visitors", "type": "quantitative", "format": ","}
+        ]
+      }
+    },
+    {
+      "title": "State Visited by Selected State Residents",
+      "data": {
+        "url": "https://raw.githubusercontent.com/jadonchan1/FIT3179/refs/heads/main/Interstate%20visitors1.csv"
+      },
+      "transform": [
+        {"filter": "datum.State == stateSelect['properties\\\\.Name']"}
+      ],
+      "encoding": {
+        "y": {"field": "DestinationState", "type": "nominal", "sort": "-x"},
+        "x": {"field": "Visitors", "type": "quantitative"},
+        "color": {"field": "DestinationState", "type": "nominal"},
+        "text": {"field": "Visitors", "type": "quantitative", "format": ","}
+      },
+      "layer": [
+        {
+          "mark": "bar",
+          "encoding": {
+            "x": {"field": "Visitors", "type": "quantitative"},
+            "y": {"field": "DestinationState", "type": "nominal"},
+            "text": {
+              "field": "Visitors",
+              "type": "quantitative",
+              "format": ","
+            },
+            "tooltip": [{"field": "Visitors", "type": "quantitative"}]
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "dx": 5,
+            "fontWeight": "bold"
+          }
+        }
+      ]
+    }
+  ],
+  "config": {}
+}
