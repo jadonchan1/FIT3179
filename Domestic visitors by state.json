@@ -72,6 +72,7 @@
     },
     {
       "title": "State Visited by Selected State Residents",
+      "width": 450,
       "data": {
         "url": "https://raw.githubusercontent.com/jadonchan1/FIT3179/refs/heads/main/Interstate%20visitors1.csv"
       },
@@ -81,7 +82,7 @@
       "encoding": {
         "y": {"field": "DestinationState", "type": "nominal", "sort": "-x"},
         "x": {"field": "Visitors", "type": "quantitative"},
-        "color": {"field": "DestinationState", "type": "nominal"},
+        "color": {"field": "DestinationState", "type": "nominal", "legend": null},
         "text": {"field": "Visitors", "type": "quantitative", "format": ","}
       },
       "layer": [
