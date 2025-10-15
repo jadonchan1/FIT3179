@@ -1,0 +1,167 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "params": [
+    {
+      "name": "selectedCategory",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": [
+          "All",
+          "Accommodation services",
+          "Food and beverage serving services",
+          "Passenger transport services",
+          "Travel agencies and other reservation services",
+          "Cultural, sports and recreational services",
+          "Retail sale of automotive fuel",
+          "Country-specific tourism characteristic goods",
+          "Country-specific tourism characteristic services"
+        ]
+      }
+    }
+  ],
+  "hconcat": [
+    {
+      "title": "Inbound Tourism Expenditure by Category",
+      "width": 500,
+      "height": 350,
+      "encoding": {"x": {"field": "Year", "type": "temporal"}},
+      "data": {
+        "url": "https://raw.githubusercontent.com/jadonchan1/FIT3179/refs/heads/main/Tourist%20expenditure%20category.csv"
+      },
+      "transform": [
+        {
+          "filter": "selectedCategory == 'All' || datum.Category == selectedCategory"
+        }
+      ],
+      "layer": [
+        {
+          "encoding": {
+            "y": {
+              "field": "Expenditure (RM Million)",
+              "type": "quantitative",
+              "title": "Expenditure (RM Million)"
+            },
+            "color": {
+              "field": "Category",
+              "type": "nominal",
+              "title": "Product Category"
+            }
+          },
+          "layer": [
+            {"mark": {"type": "line", "point": false}},
+            {
+              "transform": [{"filter": {"param": "hover", "empty": false}}],
+              "mark": "point"
+            }
+          ]
+        },
+        {
+          "transform": [
+            {
+              "pivot": "Category",
+              "value": "Expenditure (RM Million)",
+              "groupby": ["Year"]
+            }
+          ],
+          "mark": {"type": "rule", "color": "gray"},
+          "encoding": {
+            "opacity": {
+              "condition": {"value": 0.3, "param": "hover", "empty": false},
+              "value": 0
+            },
+            "tooltip": [
+              {"field": "Accommodation services", "title": "Accommodation"},
+              {
+                "field": "Food and beverage serving services",
+                "title": "Food & Beverage"
+              },
+              {"field": "Passenger transport services", "title": "Transport"},
+              {
+                "field": "Travel agencies and other reservation services",
+                "title": "Travel Agencies"
+              },
+              {
+                "field": "Cultural, sports and recreational services",
+                "title": "Cultural & Recreation"
+              },
+              {"field": "Retail sale of automotive fuel", "title": "Fuel"},
+              {
+                "field": "Country-specific tourism characteristic goods",
+                "title": "Tourism Goods"
+              },
+              {
+                "field": "Country-specific tourism characteristic services",
+                "title": "Tourism Services"
+              }
+            ]
+          },
+          "params": [
+            {
+              "name": "hover",
+              "select": {
+                "type": "point",
+                "encodings": ["x"],
+                "nearest": true,
+                "on": "pointerover"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Average Mode of Transport Distribution",
+      "width": 350,
+      "height": 300,
+      "data": {
+        "values": [
+          {"Transport": "✈️", "Percentage": 25.34},
+          {"Transport": "🚗", "Percentage": 69.52},
+          {"Transport": "🚢", "Percentage": 3.67},
+          {"Transport": "🚆", "Percentage": 1.47}
+        ]
+      },
+      "encoding": {
+        "y": {
+          "field": "Transport",
+          "type": "nominal",
+          "sort": "-x",
+          "title": "Mode of Transport",
+          "axis": {"labelFontSize": 24}
+        },
+        "x": {
+          "field": "Percentage",
+          "type": "quantitative",
+          "title": "Percentage (%)",
+          "scale": {"domain": [0, 80]}
+        }
+      },
+      "layer": [
+        {
+          "mark": "bar",
+          "encoding": {
+            "color": {
+              "field": "Percentage",
+              "type": "quantitative",
+              "title": "Percentage (%)"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "xOffset": 3,
+            "aria": false
+          },
+          "encoding": {
+            "text": {"field": "Percentage", "type": "quantitative"},
+            "color": {"value": "black"}
+          }
+        }
+      ]
+    }
+  ],
+  "config": {}
+}
