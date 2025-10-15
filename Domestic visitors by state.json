@@ -82,7 +82,7 @@
       "encoding": {
         "y": {"field": "DestinationState", "type": "nominal", "sort": "-x"},
         "x": {"field": "Visitors", "type": "quantitative"},
-        "color": {"field": "DestinationState", "type": "nominal", "legend": null},
+        "color": {"field": "DestinationState", "type": "nominal"},
         "text": {"field": "Visitors", "type": "quantitative", "format": ","}
       },
       "layer": [
