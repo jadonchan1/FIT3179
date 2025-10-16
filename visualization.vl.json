@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
   "title": "Average Tourist Arrivals of Malaysia from 2015 to 2025",
-  "width": 800,
+  "width": 1000,
   "height": 400,
   "projection": {"type": "mercator"},
   "data": {
