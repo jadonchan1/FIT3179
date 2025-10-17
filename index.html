@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="style.css">
     
-    <title>Tourism Visualisation</title>
+    <title>Tourism in Malaysia</title>
     <style>
     body {
       font-family: Arial, sans-serif;
@@ -38,14 +38,38 @@
 </head>
 
 <body>
-    <h1>Tourism Visualisation</h1>
-    <p style="text-align:center">Visualising expenditure patterns and tourism distribution.</p>
+    <h1>Tourism in Malaysia</h1>
+    <p style="text-align:center">Visualising tourism distribution and expenditure patterns of tourists to Malaysia.</p>
+
+    <div class="chart-container">
+    <div class="chart">
+      <div id="map1"></div>
+      <p class="chart-text">
+        This map illustrates the distribution of average tourist arrivals across countries, highlighting Malaysia’s tourism performance relative to its regional and global peers. The deeper shades represent higher inbound tourist numbers, revealing key travel hubs in Asia such as China and Thailand. This visualization helps identify Malaysia’s main source markets and potential regions for targeted tourism promotion.
+      </p>
+    </div>
     
-    <div id="map1" style="margin-bottom: 50px"></div>
-    <div id="bar"></div>
-    <div id="map2" style="margin-bottom: 50px"></div>
+    <div class="chart1">
+      <div id="bar"></div>
+      <p class="chart-text">
+        The multiple line chart shows how inbound tourism expenditure varies across categories such as accommodation, food, transport, and recreation. A noticeable drop around 2020 reflects the impact of global travel restrictions, followed by gradual recovery in subsequent years. The adjacent bar chart provides insight into tourists’ preferred modes of transport, showing that land travel remains the dominant choice.
+      </p>
+    </div>
+
+    <div class="chart1">
+      <div id="map2"></div>
+      <p class="chart-text">
+        This map explores domestic tourism flows within Malaysia. The left chart highlights how different states attract varying numbers of local visitors, while the right chart reveals the states travelled by the residents from the selected state in the map. States like Selangor and Kuala Lumpur stand out as top destinations, suggesting strong inter-state tourism appeal and potential areas for domestic travel campaigns.
+      </p>
+    </div>
+  </div>
 
     <script src="vega_lite_vis.js"></script>
 </body>
+
+<footer>
+  <p>2025 · Jadon Chan</p>
+  <p>Data Source: https://www.dosm.gov.my/</p>
+</footer>
 
 </html>

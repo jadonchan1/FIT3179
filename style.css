@@ -1,5 +1,29 @@
-#map1, #bar, #map2 {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 50px;
+
+
+.chart {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  max-width: 1100px;
+  text-align: center;
+}
+
+.chart1 {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  max-width: 1300px;
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+  background-color: #ffffff;
+  padding: 20px;
+  border-top: 1px solid #ccc;
+  margin-top: 50px;
+  font-size: 14px;
+  color: #555;
 }

@@ -2,16 +2,16 @@ var vg_1 = "https://raw.githubusercontent.com/jadonchan1/FIT3179/main/visualizat
 var vg_2 = "https://raw.githubusercontent.com/jadonchan1/FIT3179/refs/heads/main/visualization.vl%20(2).json";
 var vg_3 = "https://raw.githubusercontent.com/jadonchan1/FIT3179/refs/heads/main/Domestic%20visitors%20by%20state.json";
 
-// vegaEmbed("#map1", vg_1).then(function(result) {
-// }).catch(console.error);
+vegaEmbed("#map1", vg_1).then(function(result) {
+}).catch(console.error);
 
-// vegaEmbed("#bar", vg_2).then(function(result) {
-// }).catch(console.error);
+vegaEmbed("#bar", vg_2).then(function(result) {
+}).catch(console.error);
 
-// vegaEmbed("#map2", vg_3).then(function(result) {
-// }).catch(console.error);
+vegaEmbed("#map2", vg_3).then(function(result) {
+}).catch(console.error);
 
-vegaEmbed("#map1", vg_1)
-  .then(() => vegaEmbed("#bar", vg_2))
-  .then(() => vegaEmbed("#map2", vg_3))
-  .catch(console.error);
+// vegaEmbed("#map1", vg_1)
+//   .then(() => vegaEmbed("#bar", vg_2))
+//   .then(() => vegaEmbed("#map2", vg_3))
+//   .catch(console.error);
