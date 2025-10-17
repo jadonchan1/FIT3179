@@ -103,7 +103,8 @@
                 "type": "point",
                 "encodings": ["x"],
                 "nearest": true,
-                "on": "pointerover"
+                "on": "mouseover",
+                "clear": "mouseout"
               }
             }
           ]
